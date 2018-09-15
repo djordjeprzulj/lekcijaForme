@@ -14,15 +14,20 @@ export interface Language {
 export class ModelDrivenComponent implements OnInit {
 
   form: FormGroup;
-  email: FormControl = new FormControl('', [
+  email = new FormControl('', [
     Validators.required,
     Validators.pattern('[^ @]*@[^ @]*')
+  ]);
+
+  password = new FormControl('', [
+    Validators.minLength(8),
+    Validators.required
   ]);
 
   languages = [
     {value:"EN", viewValue: "English"},
     {value:"SR", viewValue: "Srpski"},
-    {value:"IT", viewValue: "Italiano"}    
+    {value:"IT", viewValue: "Italiano"}
   ];
 
   constructor() { }
@@ -34,11 +39,16 @@ export class ModelDrivenComponent implements OnInit {
         lastName: new FormControl('', Validators.required)
       }),
       email: this.email,
-      password: new FormControl('', [
-        Validators.minLength(8),
-        Validators.required
-      ] ),
+      password: this.password,
       language: new FormControl()
     });
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      console.log("Forma potvrđena.");
+      this.form.reset();
+    } else
+      console.log("Forma nije validna.");
   }
 }
