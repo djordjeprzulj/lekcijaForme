@@ -1,0 +1,27 @@
+<form novalidate [formGroup]="form">
+  <mat-card fxLayout="column" class="signup-card">
+    <div formGroupName="name">
+      <mat-form-field>
+        <input type="text" matInput placeholder="ime" formControlName="firstName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput placeholder="prezime" formControlName="lastName" required>
+      </mat-form-field>      
+    </div>
+    <mat-form-field>
+      <input type="email" matInput placeholder="email" formControlName="email" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="lozinka" formControlName="password" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="jezik" formControlName="language">        
+        <mat-option *ngFor="let lang of languages" [value]="lang.value">
+          {{lang.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>     
+    <button mat-button mat-raised-button color="primary">Potvrdi</button>    
+  </mat-card>  
+</form>
+<pre>{{ form.value | json }}</pre>
