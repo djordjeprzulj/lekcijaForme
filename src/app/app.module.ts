@@ -13,11 +13,13 @@ import { MatFormFieldModule,
         MatInputModule,
         MatButtonModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
+import { ReactiveModelComponent } from './reactive-model/reactive-model.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModelDrivenComponent
+    ModelDrivenComponent,
+    ReactiveModelComponent
   ],
   imports: [
     BrowserModule,
