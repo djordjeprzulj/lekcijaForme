@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export interface Language {
   value: string;
@@ -14,6 +14,10 @@ export interface Language {
 export class ModelDrivenComponent implements OnInit {
 
   form: FormGroup;
+  email: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('[^ @]*@[^ @]*')
+  ]);
 
   languages = [
     {value:"EN", viewValue: "English"},
@@ -26,11 +30,14 @@ export class ModelDrivenComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       name: new FormGroup({
-        firstName: new FormControl(),
-        lastName: new FormControl()
+        firstName: new FormControl('', Validators.required),
+        lastName: new FormControl('', Validators.required)
       }),
-      email: new FormControl(),
-      password: new FormControl(),
+      email: this.email,
+      password: new FormControl('', [
+        Validators.minLength(8),
+        Validators.required
+      ] ),
       language: new FormControl()
     });
   }

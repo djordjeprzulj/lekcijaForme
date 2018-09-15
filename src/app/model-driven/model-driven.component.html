@@ -9,7 +9,10 @@
       </mat-form-field>      
     </div>
     <mat-form-field>
-      <input type="email" matInput placeholder="email" formControlName="email" required>
+      <input type="email" matInput placeholder="email" formControlName="email" required [ngClass]="{
+        'bad-email': email.invalid && form.controls.email.dirty,
+        'good-email': email.valid && form.controls.email.dirty
+      }">
     </mat-form-field>
     <mat-form-field>
       <input type="password" matInput placeholder="lozinka" formControlName="password" required>

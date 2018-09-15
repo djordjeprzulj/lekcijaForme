@@ -1,3 +1,11 @@
 .signup-card {
     max-width: 400px;
   }
+
+.bad-email {
+  background-color: pink;
+}
+
+.good-email {
+  background-color: lightgreen;
+}
