@@ -1,0 +1,33 @@
+<form #f="ngForm" novalidate>
+  <mat-card fxLayout="column" class="signup-card">
+    <div ngModelGroup="name">
+      <mat-form-field>
+        <input type="text" matInput placeholder="ime" name="firstName" [(ngModel)]="model.firstName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput placeholder="prezime" name="lastName" [(ngModel)]="model.lastName" required>
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <input type="email" matInput placeholder="email" name="email" [(ngModel)]="model.email" required pattern="[^ @]*@[^ @]*" #email="ngModel" [ngClass]="{
+        'bad-email': email.invalid && email.dirty,
+        'good-email': email.valid && email.dirty
+      }">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="lozinka" name="password" [(ngModel)]="model.password" required minlength="8">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="jezik" name="language" [(ngModel)]="model.language">
+        <mat-option *ngFor="let lang of languages" [value]="lang.value">
+          {{lang.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button type="submit" mat-button mat-raised-button color="primary">Potvrdi</button>
+  </mat-card>
+</form>
+<pre>{{ f.value | json }}</pre>
+<pre>Valid? {{f.form.controls.email?.valid}}</pre>
+<pre>Dirty? {{f.form.controls.email?.dirty}}</pre>
+<pre>Touched? {{f.form.controls.email?.touched}}</pre>
